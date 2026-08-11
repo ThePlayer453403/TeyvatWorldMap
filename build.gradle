@@ -27,7 +27,6 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "xaero.map:xaeroworldmap-fabric-${project.minecraft_version}:${project.worldmap_version}"
     modImplementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.minimap_version}"
-    modImplementation files("lib/GenshinLib-${project.genshinlib_version}.jar")
     modImplementation files("lib/haw-${project.haw_version}-${minecraft_version}-fabric.jar")
 }
 
