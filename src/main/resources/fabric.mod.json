@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "teyvatworldmap",
+  "version": "${version}",
+  "name": "TeyvatWorldMap",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/teyvatworldmap/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.tp4.map.client.TeyvatWorldMapClient"
+    ],
+    "main": [
+      "com.tp4.map.TeyvatWorldMap"
+    ]
+  },
+  "mixins": [
+    "teyvatworldmap.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
