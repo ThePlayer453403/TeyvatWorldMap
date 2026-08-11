@@ -1,0 +1,18 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "teyvatworldmap:icon/teleport_point.png",
+      "chars": ["\uf001"],
+      "height": 64,
+      "ascent": 50
+    },
+    {
+      "type": "bitmap",
+      "file": "teyvatworldmap:icon/teleport_point_personal.png",
+      "chars": ["\uf002"],
+      "height": 64,
+      "ascent": 50
+    }
+  ]
+}

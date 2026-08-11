@@ -4,6 +4,13 @@
   "package": "com.tp4.map.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "HomeAndWarpMixin",
+    "WaypointIOMixin",
+    "WaypointMapRendererMixin",
+    "WaypointMixin",
+    "WaypointRendererMixin",
+    "WaypointTeleportMixin",
+    "WaypointWorldRendererMixin"
   ],
   "client": [
   ],
