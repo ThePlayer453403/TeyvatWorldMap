@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xaero.common.minimap.waypoints.Waypoint;
-import xaero.common.misc.Misc;
 import xaero.hud.minimap.waypoint.render.world.WaypointWorldRenderer;
 import xaero.lib.client.graphics.XaeroBufferProvider;
 
