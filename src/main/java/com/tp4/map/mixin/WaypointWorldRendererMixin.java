@@ -1,6 +1,7 @@
 package com.tp4.map.mixin;
 
 import com.tp4.map.CustomWaypoint;
+import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +20,7 @@ public class WaypointWorldRendererMixin {
         if (w instanceof CustomWaypoint) {
             matrixStack.push();
             matrixStack.scale(0.25f, 0.25f, 0.25f);
-            Misc.drawNormalText(matrixStack, ((CustomWaypoint) w).type.equals("warp") ? "\uf001" : "\uf002", -32f, -8.0f, -1, false, bufferSource);
+            TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((CustomWaypoint) w), -32f, -8.0f, -1, false, bufferSource);
             matrixStack.pop();
             ci.cancel();
         }

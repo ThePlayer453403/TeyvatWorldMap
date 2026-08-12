@@ -3,14 +3,14 @@
     {
       "type": "bitmap",
       "file": "teyvatworldmap:icon/teleport_point.png",
-      "chars": ["\uf001"],
+      "chars": ["\u0001"],
       "height": 64,
       "ascent": 50
     },
     {
       "type": "bitmap",
       "file": "teyvatworldmap:icon/teleport_point_personal.png",
-      "chars": ["\uf002"],
+      "chars": ["\u0002"],
       "height": 64,
       "ascent": 50
     }

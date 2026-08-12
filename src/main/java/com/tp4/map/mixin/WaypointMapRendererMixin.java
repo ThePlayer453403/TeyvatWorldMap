@@ -1,6 +1,7 @@
 package com.tp4.map.mixin;
 
 import com.tp4.map.CustomWaypoint;
+import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.VertexConsumer;
@@ -26,7 +27,7 @@ public class WaypointMapRendererMixin {
             MatrixStack matrixStack = guiGraphics.pose();
             matrixStack.push();
             matrixStack.scale(0.25f, 0.25f, 0.25f);
-            Misc.drawNormalText(matrixStack, ((CustomWaypoint) w).type.equals("warp") ? "\uf001" : "\uf002", -32f, 16f, -1, false, renderTypeBuffer);
+            TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((CustomWaypoint) w), -32f, 16f, -1, false, renderTypeBuffer);
             matrixStack.pop();
             ci.cancel();
         }
@@ -41,7 +42,7 @@ public class WaypointMapRendererMixin {
             guiGraphics.getMatrices().pushMatrix();
             guiGraphics.getMatrices().translate(drawX - 10, drawY + 3);
             guiGraphics.getMatrices().scale(0.25f);
-            guiGraphics.drawText(MinecraftClient.getInstance().textRenderer, ((CustomWaypoint) w).type.equals("warp") ? "\uf001" : "\uf002", 0, 0, -1, false);
+            guiGraphics.drawText(MinecraftClient.getInstance().textRenderer, TeyvatWorldMap.getIcon((CustomWaypoint) w), 0, 0, -1, false);
             guiGraphics.getMatrices().popMatrix();
             ci.cancel();
         }

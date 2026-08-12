@@ -1,6 +1,6 @@
 package com.tp4.map.mixin;
 
-import com.tp4.map.client.TeyvatWorldMapClient;
+import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
@@ -29,8 +29,8 @@ public abstract class WaypointMixin {
     @Overwrite
     public void addWaypointSet(String s) {
         WaypointSet set = xaero.hud.minimap.waypoint.set.WaypointSet.Builder.begin().setName(s).build();
-        TeyvatWorldMapClient.waypointSets.put(dimId.getValue().toString(), set);
+        TeyvatWorldMap.waypointSets.put(dimId.getValue().toString(), set);
         this.waypointSets.put(s, set);
-        TeyvatWorldMapClient.reload();
+        TeyvatWorldMap.reload();
     }
 }

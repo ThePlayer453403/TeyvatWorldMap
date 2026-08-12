@@ -1,6 +1,7 @@
 package com.tp4.map.mixin;
 
 import com.tp4.map.CustomWaypoint;
+import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
@@ -26,7 +27,7 @@ public class WaypointRendererMixin {
     private void TeyvatWorldMap$worldmapTeleportPointIcon(Waypoint w, boolean hovered, double optionalDepth, float optionalScale, double partialX, double partialY, ElementRenderInfo renderInfo, MapElementGraphics guiGraphics, VertexConsumerProvider.Immediate vanillaBufferSource, MultiTextureRenderTypeRendererProvider rendererProvider, CallbackInfoReturnable<Boolean> cir) {
         if (w.getOriginal() instanceof CustomWaypoint) {
             MatrixStack matrixStack = guiGraphics.pose();
-            Misc.drawNormalText(matrixStack, ((CustomWaypoint) w.getOriginal()).type.equals("warp") ? "\uf001" : "\uf002", -32f, -20f, -1, false, vanillaBufferSource);
+            TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((CustomWaypoint) w.getOriginal()), -32f, -20f, -1, false, vanillaBufferSource);
             if (hovered) {
                 matrixStack.push();
                 matrixStack.scale(3f, 3f, 3f);
