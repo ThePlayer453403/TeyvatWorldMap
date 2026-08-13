@@ -26,6 +26,6 @@
     "minecraft": "${minecraft_version}",
     "xaerominimap": "*",
     "xaeroworldmap": "*",
-    "haw": ">=${haw_version}"
+    "haw": ">=1.1.0"
   }
 }
