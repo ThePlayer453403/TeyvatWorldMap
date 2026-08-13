@@ -1,0 +1,14 @@
+{
+  "text.autoconfig.teyvatworldmap.title": "TeyvatWorldMap 设置",
+  "text.autoconfig.teyvatworldmap.option.world": "在世界中渲染传送点",
+  "text.autoconfig.teyvatworldmap.option.minimap": "在小地图中渲染传送点",
+  "text.autoconfig.teyvatworldmap.option.worldmap": "在世界地图中渲染传送点",
+  "text.autoconfig.teyvatworldmap.option.statueOfTheSeven": "将sx开头的传送点渲染为七天神像",
+  "text.autoconfig.teyvatworldmap.option.customIcon": "自定义图标",
+  "text.autoconfig.teyvatworldmap.option.customIcon.color": "传送点默认颜色",
+  "text.autoconfig.teyvatworldmap.option.customIcon.initial": "传送点默认首字母",
+  "text.autoconfig.teyvatworldmap.option.customIcon.world": "在世界中启用自定义图标",
+  "text.autoconfig.teyvatworldmap.option.customIcon.minimap": "在小地图中启用自定义图标",
+  "text.autoconfig.teyvatworldmap.option.customIcon.worldmap": "在世界地图中启用自定义图标",
+  "text.autoconfig.teyvatworldmap.option.customIcon.gui": "在路径点界面中启用自定义图标"
+}

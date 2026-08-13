@@ -16,6 +16,12 @@ repositories {
         url "https://chocolateminecraft.com/maven"
         name "Xaero's Maven"
     }
+    maven { url "https://maven.shedaniel.me/" }
+    maven { url "https://maven.terraformersmc.com/releases/" }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
     flatDir {dir "lib"}
 }
 
@@ -27,7 +33,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "xaero.map:xaeroworldmap-fabric-${project.minecraft_version}:${project.worldmap_version}"
     modImplementation "xaero.minimap:xaerominimap-fabric-${project.minecraft_version}:${project.minimap_version}"
+    modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     modImplementation files("lib/haw-${project.haw_version}-${minecraft_version}-fabric.jar")
+    modApi("me.shedaniel.cloth:cloth-config-fabric:${clothconfig_version}") {exclude(group: "net.fabricmc.fabric-api")}
 }
 
 processResources {

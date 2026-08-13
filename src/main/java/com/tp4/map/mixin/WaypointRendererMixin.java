@@ -1,6 +1,6 @@
 package com.tp4.map.mixin;
 
-import com.tp4.map.CustomWaypoint;
+import com.tp4.map.ModCustomWaypoint;
 import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -25,15 +25,18 @@ public class WaypointRendererMixin {
             at = @At("HEAD"), cancellable = true
     )
     private void TeyvatWorldMap$worldmapTeleportPointIcon(Waypoint w, boolean hovered, double optionalDepth, float optionalScale, double partialX, double partialY, ElementRenderInfo renderInfo, MapElementGraphics guiGraphics, VertexConsumerProvider.Immediate vanillaBufferSource, MultiTextureRenderTypeRendererProvider rendererProvider, CallbackInfoReturnable<Boolean> cir) {
-        if (w.getOriginal() instanceof CustomWaypoint) {
-            MatrixStack matrixStack = guiGraphics.pose();
-            TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((CustomWaypoint) w.getOriginal()), -32f, -20f, -1, false, vanillaBufferSource);
-            if (hovered) {
-                matrixStack.push();
-                matrixStack.scale(3f, 3f, 3f);
-                guiGraphics.fill(8, -15, 12 + MinecraftClient.getInstance().textRenderer.getWidth(((CustomWaypoint) w.getOriginal()).getName()), -4, 0x80000000);
-                Misc.drawNormalText(matrixStack, ((CustomWaypoint) w.getOriginal()).getName(), 10f, -14f, -1, true, vanillaBufferSource);
-                matrixStack.pop();
+        if (!TeyvatWorldMap.config.customIcon.worldmap) return;
+        if (w.getOriginal() instanceof ModCustomWaypoint) {
+            if (TeyvatWorldMap.config.worldmap) {
+                MatrixStack matrixStack = guiGraphics.pose();
+                TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((ModCustomWaypoint) w.getOriginal()), -32f, -20f, -1, false, vanillaBufferSource);
+                if (hovered) {
+                    matrixStack.push();
+                    matrixStack.scale(3f, 3f, 3f);
+                    guiGraphics.fill(8, -15, 12 + MinecraftClient.getInstance().textRenderer.getWidth(((ModCustomWaypoint) w.getOriginal()).getName()), -4, 0x80000000);
+                    Misc.drawNormalText(matrixStack, ((ModCustomWaypoint) w.getOriginal()).getName(), 10f, -14f, -1, true, vanillaBufferSource);
+                    matrixStack.pop();
+                }
             }
             cir.cancel();
         }
@@ -44,8 +47,7 @@ public class WaypointRendererMixin {
             at = @At("HEAD"), cancellable = true
     )
     private void TeyvatWorldMap$worldmapTeleportPointIconShadow(Waypoint w, boolean hovered, float optionalScale, double partialX, double partialY, ElementRenderInfo renderInfo, MapElementGraphics guiGraphics, VertexConsumerProvider.Immediate vanillaBufferSource, MultiTextureRenderTypeRendererProvider rendererProvider, CallbackInfo ci) {
-        if (w.getOriginal() instanceof CustomWaypoint) {
-            ci.cancel();
-        }
+        if (!TeyvatWorldMap.config.customIcon.worldmap) return;
+        if (w.getOriginal() instanceof ModCustomWaypoint) ci.cancel();
     }
 }

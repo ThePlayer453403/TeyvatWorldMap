@@ -1,0 +1,14 @@
+{
+  "text.autoconfig.teyvatworldmap.title": "TeyvatWorldMap Settings",
+  "text.autoconfig.teyvatworldmap.option.world": "Render TeleportPoint In World",
+  "text.autoconfig.teyvatworldmap.option.minimap": "Render TeleportPoint In Minimap",
+  "text.autoconfig.teyvatworldmap.option.worldmap": "Render TeleportPoint In Worldmap",
+  "text.autoconfig.teyvatworldmap.option.statueOfTheSeven": "Render TeleportPoint starts with \"sx\" as The Statue Of The Seven",
+  "text.autoconfig.teyvatworldmap.option.customIcon": "Custom Icon",
+  "text.autoconfig.teyvatworldmap.option.customIcon.color": "Default Color For TeleportPoint",
+  "text.autoconfig.teyvatworldmap.option.customIcon.initial": "Default Initial For TeleportPoint",
+  "text.autoconfig.teyvatworldmap.option.customIcon.world": "Enable Custom Icon In World",
+  "text.autoconfig.teyvatworldmap.option.customIcon.minimap": "Enable Custom Icon In Minimap",
+  "text.autoconfig.teyvatworldmap.option.customIcon.worldmap": "Enable Custom Icon In Worldmap",
+  "text.autoconfig.teyvatworldmap.option.customIcon.gui": "Enable Custom Icon In Waypoint GUI"
+}

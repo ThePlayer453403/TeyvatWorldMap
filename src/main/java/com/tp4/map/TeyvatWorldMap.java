@@ -2,7 +2,11 @@ package com.tp4.map;
 
 import com.example.haw.TeleportPoint;
 import com.example.haw.client.HomeAndWarpClient;
-import net.fabricmc.api.ModInitializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientWorldEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -17,16 +21,22 @@ import xaero.hud.minimap.waypoint.set.WaypointSet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TeyvatWorldMap implements ModInitializer {
+public class TeyvatWorldMap implements ClientModInitializer {
     public static Map<String, WaypointSet> waypointSets = new HashMap<>();
+    public static ModConfig config;
     public static final Identifier FONT = Identifier.of("teyvatworldmap", "teleport_point");
 
     @Override
-    public void onInitialize() {
+    public void onInitializeClient() {
+        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
+        config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+
+        ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((client, world) -> TeyvatWorldMap.reload());
+        ClientPlayConnectionEvents.DISCONNECT.register(((handler, client) -> TeyvatWorldMap.waypointSets = new HashMap<>()));
     }
 
     public static Waypoint getWaypoint(TeleportPoint teleportPoint, String type) {
-        return new CustomWaypoint((int) teleportPoint.x, (int) teleportPoint.y, (int) teleportPoint.z, teleportPoint.note, teleportPoint.name, type);
+        return new ModCustomWaypoint((int) teleportPoint.x, (int) teleportPoint.y, (int) teleportPoint.z, teleportPoint.note, teleportPoint.name, type);
     }
 
     public static void reload() {
@@ -48,7 +58,7 @@ public class TeyvatWorldMap implements ModInitializer {
         }
         waypointSets.values().forEach(waypointSet -> {
             for (int i = 0; i < waypointSet.size(); i++) {
-                if (!(waypointSet.get(i) instanceof CustomWaypoint waypoint)) {
+                if (!(waypointSet.get(i) instanceof ModCustomWaypoint waypoint)) {
                     continue;
                 }
                 if (waypoint.type.equals("warp") && !HomeAndWarpClient.warp.containsKey(waypoint.id) || (waypoint.type.equals("home") && !HomeAndWarpClient.home.containsKey(waypoint.id))) {
@@ -60,7 +70,7 @@ public class TeyvatWorldMap implements ModInitializer {
 
     public static void tryAddWaypoint(WaypointSet waypointSet, TeleportPoint teleportPoint, String type) {
         for (int i=0; i<waypointSet.size(); i++) {
-            if (waypointSet.get(i) instanceof CustomWaypoint customWaypoint) {
+            if (waypointSet.get(i) instanceof ModCustomWaypoint customWaypoint) {
                 if (customWaypoint.id.equals(teleportPoint.name) && customWaypoint.type.equals(type)) {
                     return;
                 }
@@ -69,8 +79,8 @@ public class TeyvatWorldMap implements ModInitializer {
         waypointSet.add(getWaypoint(teleportPoint, type));
     }
 
-    public static Text getIcon(CustomWaypoint customWaypoint) {
-        return Text.literal(customWaypoint.type.equals("warp") ? (customWaypoint.id.startsWith("sx_") ? "\u0003" : "\u0001") : "\u0002").setStyle(Style.EMPTY.withFont(new StyleSpriteSource.Font(FONT)));
+    public static Text getIcon(ModCustomWaypoint customWaypoint) {
+        return Text.literal(customWaypoint.type.equals("warp") ? (config.statueOfTheSeven && customWaypoint.id.startsWith("sx_") ? "\u0003" : "\u0001") : "\u0002").setStyle(Style.EMPTY.withFont(new StyleSpriteSource.Font(FONT)));
     }
 
     public static void drawNormalText(MatrixStack matrices, Text name, float x, float y, int color, boolean shadow, VertexConsumerProvider renderTypeBuffer) {

@@ -1,6 +1,6 @@
 package com.tp4.map.mixin;
 
-import com.tp4.map.CustomWaypoint;
+import com.tp4.map.ModCustomWaypoint;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -17,7 +17,7 @@ public class WaypointIOMixin {
     private Iterable<Waypoint> redirectGetWaypoints(WaypointSet set) {
         List<Waypoint> ret = new ArrayList<>();
         set.getWaypoints().forEach(waypoint -> {
-            if (!(waypoint instanceof CustomWaypoint)) {
+            if (!(waypoint instanceof ModCustomWaypoint)) {
                 ret.add(waypoint);
             }
         });

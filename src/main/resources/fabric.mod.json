@@ -3,29 +3,27 @@
   "id": "teyvatworldmap",
   "version": "${version}",
   "name": "TeyvatWorldMap",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "View TeleportPoints Just Like Waypoints",
+  "authors": ["ThePlayer453403"],
+  "contact": {
+    "sources": "https://github.com/ThePlayer453403/TeyvatWorldMap",
+    "issues": "https://github.com/ThePlayer453403/TeyvatWorldMap/issues"
+  },
   "license": "MIT",
   "icon": "assets/teyvatworldmap/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "com.tp4.map.client.TeyvatWorldMapClient"
-    ],
-    "main": [
-      "com.tp4.map.TeyvatWorldMap"
-    ]
+    "client": ["com.tp4.map.TeyvatWorldMap"],
+    "modmenu": ["com.tp4.map.ModMenuIntegration"]
   },
-  "mixins": [
-    "teyvatworldmap.mixins.json"
-  ],
+  "mixins": ["teyvatworldmap.mixins.json"],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
     "minecraft": "${minecraft_version}",
     "xaerominimap": "*",
     "xaeroworldmap": "*",
+    "cloth-config": "*",
     "haw": ">=1.1.0"
   }
 }

@@ -1,6 +1,6 @@
 package com.tp4.map.mixin;
 
-import com.tp4.map.CustomWaypoint;
+import com.tp4.map.ModCustomWaypoint;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,7 +15,7 @@ import xaero.hud.minimap.world.MinimapWorld;
 public class WaypointTeleportMixin {
     @Inject(method = "teleportToWaypoint*", at = @At("HEAD"), cancellable = true)
     private void TeyvatWorldMap$teleport(Waypoint waypoint, MinimapWorld world, Screen screen, CallbackInfo ci) {
-        if (waypoint instanceof CustomWaypoint customWaypoint && MinecraftClient.getInstance().getNetworkHandler() != null) {
+        if (waypoint instanceof ModCustomWaypoint customWaypoint && MinecraftClient.getInstance().getNetworkHandler() != null) {
             MinecraftClient.getInstance().getNetworkHandler().sendChatCommand(String.format("%s tp %s", customWaypoint.type, customWaypoint.id));
             MinecraftClient.getInstance().setScreen(null);
             ci.cancel();

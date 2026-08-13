@@ -1,6 +1,6 @@
 package com.tp4.map.mixin;
 
-import com.tp4.map.CustomWaypoint;
+import com.tp4.map.ModCustomWaypoint;
 import com.tp4.map.TeyvatWorldMap;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -22,12 +22,15 @@ public class WaypointMapRendererMixin {
             at = @At("HEAD"), cancellable = true
     )
     public void TeyvatWorldMap$minimapTeleportPointIcon(MinimapElementGraphics guiGraphics, Waypoint w, int drawX, int drawY, int rectX1, int rectY1, int rectX2, int rectY2, int r, int g, int b, float a, int initialsWidth, XaeroBufferProvider renderTypeBuffer, VertexConsumer waypointBackgroundConsumer, VertexConsumer texturedIconConsumer, CallbackInfo ci) {
-        if (w instanceof CustomWaypoint) {
-            MatrixStack matrixStack = guiGraphics.pose();
-            matrixStack.push();
-            matrixStack.scale(0.25f, 0.25f, 0.25f);
-            TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((CustomWaypoint) w), -32f, 16f, -1, false, renderTypeBuffer);
-            matrixStack.pop();
+        if (!TeyvatWorldMap.config.customIcon.minimap) return;
+        if (w instanceof ModCustomWaypoint) {
+            if (TeyvatWorldMap.config.minimap) {
+                MatrixStack matrixStack = guiGraphics.pose();
+                matrixStack.push();
+                matrixStack.scale(0.25f, 0.25f, 0.25f);
+                TeyvatWorldMap.drawNormalText(matrixStack, TeyvatWorldMap.getIcon((ModCustomWaypoint) w), -32f, 16f, -1, false, renderTypeBuffer);
+                matrixStack.pop();
+            }
             ci.cancel();
         }
     }
@@ -37,11 +40,12 @@ public class WaypointMapRendererMixin {
             at = @At("HEAD"), cancellable = true
     )
     private void TeyvatWorldMap$guiTeleportPointIcon(DrawContext guiGraphics, Waypoint w, int drawX, int drawY, int rectX1, int rectY1, int rectX2, int rectY2, int r, int g, int b, float a, int initialsWidth, CallbackInfo ci) {
-        if (w instanceof CustomWaypoint) {
+        if (!TeyvatWorldMap.config.customIcon.gui) return;
+        if (w instanceof ModCustomWaypoint) {
             guiGraphics.getMatrices().pushMatrix();
             guiGraphics.getMatrices().translate(drawX - 10, drawY + 3);
             guiGraphics.getMatrices().scale(0.25f);
-            guiGraphics.drawText(MinecraftClient.getInstance().textRenderer, TeyvatWorldMap.getIcon((CustomWaypoint) w), 0, 0, -1, false);
+            guiGraphics.drawText(MinecraftClient.getInstance().textRenderer, TeyvatWorldMap.getIcon((ModCustomWaypoint) w), 0, 0, -1, false);
             guiGraphics.getMatrices().popMatrix();
             ci.cancel();
         }
