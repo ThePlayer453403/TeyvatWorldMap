@@ -70,7 +70,7 @@ public class TeyvatWorldMap implements ModInitializer {
     }
 
     public static Text getIcon(CustomWaypoint customWaypoint) {
-        return Text.literal(customWaypoint.type.equals("warp") ? "\u0001" : "\u0002").setStyle(Style.EMPTY.withFont(new StyleSpriteSource.Font(FONT)));
+        return Text.literal(customWaypoint.type.equals("warp") ? (customWaypoint.id.startsWith("sx_") ? "\u0003" : "\u0001") : "\u0002").setStyle(Style.EMPTY.withFont(new StyleSpriteSource.Font(FONT)));
     }
 
     public static void drawNormalText(MatrixStack matrices, Text name, float x, float y, int color, boolean shadow, VertexConsumerProvider renderTypeBuffer) {

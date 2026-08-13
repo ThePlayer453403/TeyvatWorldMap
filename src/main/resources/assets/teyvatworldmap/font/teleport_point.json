@@ -13,6 +13,13 @@
       "chars": ["\u0002"],
       "height": 64,
       "ascent": 50
+    },
+    {
+      "type": "bitmap",
+      "file": "teyvatworldmap:icon/teleport_point_statue.png",
+      "chars": ["\u0003"],
+      "height": 72,
+      "ascent": 50
     }
   ]
 }

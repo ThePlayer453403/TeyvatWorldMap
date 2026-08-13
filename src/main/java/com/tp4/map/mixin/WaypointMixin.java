@@ -29,7 +29,7 @@ public abstract class WaypointMixin {
     @Overwrite
     public void addWaypointSet(String s) {
         WaypointSet set = xaero.hud.minimap.waypoint.set.WaypointSet.Builder.begin().setName(s).build();
-        TeyvatWorldMap.waypointSets.put(dimId.getValue().toString(), set);
+        TeyvatWorldMap.waypointSets.putIfAbsent(dimId.getValue().toString(), set);
         this.waypointSets.put(s, set);
         TeyvatWorldMap.reload();
     }
